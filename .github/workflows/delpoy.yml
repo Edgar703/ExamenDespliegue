@@ -1,18 +1,23 @@
-name: Deploy
+name: Deploy Agrivall (EC2 + Sail)
+
 on:
   push:
     branches: ["main"]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
+          port: 22
           script: |
             set -e
-            cd /home/ubuntu/ExamenDespliegue/
-            git pull
+            cd /home/ubuntu/ExamenDespliegue
+
+            git fetch --all
+            git reset --hard origin/main
