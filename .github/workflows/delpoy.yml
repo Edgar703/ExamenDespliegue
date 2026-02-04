@@ -1,0 +1,17 @@
+name: Deploy Laravel Components (Remote)
+on:
+  push:
+    branches: ["main"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          script: |
+            set -e
+            cd /var/www/html/ExamenDespliegue/
+            git pull
