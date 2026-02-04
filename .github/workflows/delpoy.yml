@@ -14,5 +14,5 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             set -e
-            cd /var/www/html/ExamenDespliegue/
+            cd /home/ubuntu/ExamenDespliegue/
             git pull
